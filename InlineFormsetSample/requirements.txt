@@ -1,6 +1,6 @@
 bootstrap4==0.1.0
 cycler==0.10.0
-Django==2.0.4
+Django==2.2.10
 django-bootstrap-form==3.4
 django-bootstrap4==0.0.6
 django-filter==1.1.0
