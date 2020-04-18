@@ -1,0 +1,71 @@
+# distributed under the same license as the Viewflow package.
+msgid ""
+msgstr ""
+"Project-Id-Version: viewflow\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-09 09:52+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ja_JP\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.2.3\n"
+
+#: flows.py:20
+msgid "Hello world"
+msgstr "こんにちは"
+
+#: flows.py:21
+msgid "This process demonstrates hello world approval request flow."
+msgstr "このプロセスは、Hello World承認要求フローを示しています。"
+
+#: flows.py:25
+msgid "'{{ process.text }}' message to the world"
+msgstr "'{{process.text}}'Helloへのメッセージ"
+
+#: flows.py:31
+msgid "New message"
+msgstr "新しいメッセージ"
+
+#: flows.py:39
+msgid "Approve"
+msgstr "承認"
+
+#: flows.py:40
+msgid "Message approvement required"
+msgstr "メッセージの承認が必要です"
+
+#: flows.py:41
+msgid "Messsage was {{ process.approved|yesno:'Approved,Rejected' }}"
+msgstr "メッセージは {{ process.approved|yesno:'Approved,Rejected' }}"
+
+#: flows.py:49
+msgid "Approvement check"
+msgstr "承認チェック"
+
+#: flows.py:58
+msgid "Send message"
+msgstr "送信メッセージ"
+
+#: flows.py:64
+msgid "End"
+msgstr "終了"
+
+#: models.py:7
+msgid "Message"
+msgstr "メッセージ"
+
+#: models.py:8
+msgid "Approved"
+msgstr "承認された"
+
+#: models.py:11
+msgid "World Request"
+msgstr "リクエスト"
+
+#: models.py:12
+msgid "World Requests"
+msgstr "要求"
