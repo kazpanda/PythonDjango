@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block title %}
+{{ html_obj.created_at }} - {{ block.super }}
+{% endblock %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'licenses:home' %}">Licenses</a></li>
+<li class="breadcrumb-item active">{{ html_obj.created_at }}</li>
+{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+  <a href="{% url 'licenses:operation_new' html_obj.pk %}" class="btn btn-primary">New operation</a>
+</div>
+
+<table class="table table-striped mb-4">
+  <thead class="thead-inverse">
+    <tr>
+      <th>No</th>
+      <th>作成日</th>
+      <th>起動回数</th>
+      <th>週報発行回数</th>
+      <th>月報発行回数</th>
+      <th>メモ</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for obj in operation %}
+    {% url 'licenses:operation_posts' html_obj.pk obj.pk as operation_url %}
+    <tr>
+      <td>
+        <p class="mb-0">
+          <a href="{{ operation_url }}">{{ obj.increment_num }}</a>
+        </p>
+
+      <td class="align-middle">{{ obj.created_at }}</td>
+      <td class="align-middle">{{ obj.starting_count }}</td>
+      <td class="align-middle">{{ obj.weekly_report_count }}</td>
+      <td class="align-middle">{{ obj.monthly_report_count }}</td>
+      <td class="align-middle">{{ obj.memo }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% include 'includes/pagination.html' %}
+
+{% endblock %}

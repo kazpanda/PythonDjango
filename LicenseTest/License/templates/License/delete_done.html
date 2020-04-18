@@ -1,0 +1,21 @@
+{% extends 'License/base.html' %}
+{% block content %}
+
+ <div class="content-wrapper">
+   <div class="container-fluid">
+     <!-- Breadcrumbs-->
+     <ol class="breadcrumb">
+       <li class="breadcrumb-item">
+         <a href="{% url 'License:list' %}">TOP</a>
+       </li>
+       <li class="breadcrumb-item active">ライセンス管理</li>
+     </ol>
+     <!-- Example DataTables Card-->
+     <div class="card mb-3">
+       <div class="card-header">
+         <i class="fa fa-server"></i> <b>ライセンス管理</b></div>
+       <div class="card-body">
+        <div class="alert alert-info" role="alert">データ削除処理が正常終了しました。</div>
+                   <a class="btn btn-primary" href="{% url 'License:list' %}" role="button">全リストに戻る</a>
+
+{% endblock content %}

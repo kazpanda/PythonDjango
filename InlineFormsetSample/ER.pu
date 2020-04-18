@@ -1,0 +1,68 @@
+@startuml ER図
+
+'-------------------------------------------------
+' 2019/09/17 吉冨 新規作成
+'
+'-------------------------------------------------
+
+!define MAIN_ENTITY #E2EFDA
+!define MAIN_ENTITY_2 #FCE4D6
+
+!define METAL #F2F2F2
+!define MASTER_MARK_COLOR AAFFAA
+!define TRANSACTION_MARK_COLOR FFAA00
+
+skinparam class {
+    BackgroundColor White
+    BorderColor Black
+    ArrowColor Black
+}
+
+package "ライセンス管理システム" as target_system {
+
+    entity "User" as User <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        + UserID [PK]
+        --
+        名前
+    }
+
+    entity "Item" as Item <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        + ItemID [PK]
+        --
+        名前
+        単価
+        並び順
+    }
+
+    entity "Invoice" as Invoice <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
+        + InvoiceID [PK]
+        --
+        # UserID[FK]
+        顧客名
+        小計
+        消費税
+        合計金額
+        作成者
+        登録日
+    }
+
+    entity "InvoiceDetail" as InvoiceDetail <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
+        + InvoiceDetailID [PK]
+        --
+        # invoiceID [FK]
+        # itemID [FK]
+        単価
+        数量
+        金額
+    }
+
+}
+
+User    ||--{ Invoice
+Invoice ||--{ InvoiceDetail
+Item    ||--{ InvoiceDetail
+
+
+'note bottom of customer : 別プロジェクト\nDB-Linkで参照する
+
+@enduml

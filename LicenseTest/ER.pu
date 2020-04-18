@@ -1,0 +1,136 @@
+@startuml
+
+!define MAIN_ENTITY #E2EFDA
+!define MAIN_ENTITY_2 #FCE4D6
+
+!define METAL #F2F2F2
+!define MASTER_MARK_COLOR AAFFAA
+!define TRANSACTION_MARK_COLOR FFAA00
+
+skinparam class {
+    BackgroundColor White
+    BorderColor Black
+    ArrowColor Black
+}
+
+package "ライセンス管理システム" as target_system {
+
+    entity "ライセンス管理 / T_License" as License <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
+        + ライセンス管理ID [PK]
+        --
+        # 作成者ユーザーID/author [FK]
+        # 利用者ユーザーID/user [FK]
+        # 責任者ユーザーID/responsible_person [FK]
+        # 会社ID/company [FK]
+        # 言語ID/language [FK]
+        # アプリケーション/application [FK]
+        --
+        作成日/created_date
+        表記番号/display_number
+        HID/hid
+        残ポイント/remaining_point
+        メモ/memo
+    }
+
+    entity "ライセンス発行履歴 / T_Publish_history" as PublishHistory <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
+        + ライセンス発行ID   [PK]
+        --
+        # 作成者ユーザーID/author [FK]
+        # 更新者ユーザーID/chenger [FK]
+        # ライセンス管理ID/license [FK]
+        # 申請区分ID/request_category [FK]
+        --
+        作成日/created_date
+        更新日/update_date
+        使用開始日/begin_date
+        使用終了日/end_date
+        MACアドレス/mac_address
+        販売金額/price
+        付与ポイント/grant_points
+        残数ポイント/remaining_point
+        更新期限通知/renewal_deadline_notification
+        更新申請受理/renewal_application_accepted
+        Key情報収集案内/renewal_application_send
+        更新Key発行連絡/renewal_key_publish_notification
+        廃止回収日/discontinued_product_collection
+        メモ/memo
+    }
+
+    entity "使用履歴 / T_OperationHistory" as OperationHistory <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
+        + 使用履歴ID   [PK]
+        --
+        # 作成者ユーザーID/author [FK]
+        # ライセンス管理ID/license[FK]
+        --
+        作成日/created_date
+        起動回数/starting_count
+        週報発行回数/weekly_report_count
+        月報発行回数/monthly_report_count
+    }
+
+    entity "申請区分 / M_RequestCategory" as RequestCategory <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        + 申請区分ID [PK]
+        --
+        申請区分名/request_category_name
+    }
+
+    entity "アプリケーション / M_Application" as Application <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        + ソフトID [PK]
+        --
+        ソフト名/application_name
+    }
+
+    entity "ユーザーマスタ / M_User" as User <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        + ユーザーID [PK]
+        --
+        メールアドレス/mail_address
+        役職/position
+    }
+
+    entity "会社マスタ / M_Company" as Company <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        + 会社ID [PK]
+        --
+        会社名/company_name
+        拠点名/base_name
+    }
+
+    entity "言語マスタ / M_Language" as Language <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        + 言語ID [PK]
+        --
+        言語名/language_name
+    }
+
+    entity "メッセージマスタ / M_Message" as Message <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        + メッセージID [PK]
+        --
+        本文/message
+        タイトル/title
+        ヘッダー/header
+        フッター/footer
+    }
+
+    entity "メッセージ履歴 / T_MessageHistory" as MessageHistory <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
+        + メッセージ履歴ID [PK]
+        --
+        # ライセンス管理ID[FK]
+        # メッセージID[FK]
+        作成日/created_date
+    }
+}
+
+
+Company         ||--|{ License
+Language        ||--|{ License
+User            ||--|{ License
+Application     ||--|{ License
+
+License         ||--|{ PublishHistory
+License         ||--|{ OperationHistory
+License         ||--|{ MessageHistory
+PublishHistory  ||--|{ RequestCategory
+MessageHistory   }--|| Message
+
+
+'note right of License : 別プロジェクト\nDB-Linkで参照する
+
+@enduml

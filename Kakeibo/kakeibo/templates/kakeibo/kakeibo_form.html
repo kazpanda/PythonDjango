@@ -1,0 +1,33 @@
+{% extends 'kakeibo/base.html' %}
+{% load bootstrap %}
+{% block content %}
+ <form method="post">
+   <div class="container">
+     <div class="row">
+       <div class="col-12">
+         <div class="content-wrapper">
+           <div class="container-fluid">
+             <!-- Breadcrumbs-->
+             <ol class="breadcrumb">
+               <li class="breadcrumb-item">
+                 <a href="{% url 'kakeibo:kakeibo_list' %}">TOP</a>
+               </li>
+               <li class="breadcrumb-item active">家計簿アプリ</li>
+               <li class="breadcrumb-item active">データ登録</li>
+             </ol>
+             <!-- Example DataTables Card-->
+             <div class="card mb-3">
+               <div class="card-header">
+                 <i class="fa fa-server"></i> <h3>データ登録画面</h3></div>
+               <div class="card-body">          {{ form|bootstrap }}
+       </div>
+     </div>
+     <div class="row">
+       <div class="col-12">
+         <button class="btn btn-primary">保存</button>
+       </div>
+     </div>
+   </div>
+   {% csrf_token %}
+ </form>
+{% endblock %}

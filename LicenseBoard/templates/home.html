@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active">Licenses</li>
+{% endblock %}
+
+{% block content %}
+<table class="table">
+  <thead class="thead-inverse">
+    <tr>
+      <th>作成日</th>
+      <th>表示名</th>
+      <th>HID</th>
+      <th>アプリケーション</th>
+      <th>使用者</th>
+      <th>発行履歴数</th>
+      <th>使用履歴数</th>
+      <th>Last Post</th>
+      <th class="text-center">発行履歴</th>
+      <th class="text-center">使用履歴</th>
+      <th class="text-center">更新・削除</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for obj in licenses %}
+    <tr>
+      <!-- 作成日 -->
+      <td>{{ obj.created_at}}</td>
+      <!-- 表示名 メモ -->
+      <td>
+        <a href="{% url 'licenses:publication_list' obj.pk %}">{{ obj.display_name }}</a>
+        <small class="text-muted d-block">{{ obj.memo }}</small>
+      </td>
+      <!-- HID -->
+      <td class="align-middle"> {{ obj.hid }} </td>
+      <!-- アプリケーション名 -->
+      <td>{{ obj.application}}</td>
+      <!-- 使用者 -->
+      <td>{{ obj.company}}</td>
+      <!-- PublicationCount -->
+      <td class="align-middle"> {{ obj.publications.count }} </td>
+      <!-- OperatioCount -->
+      <td class="align-middle"> {{ obj.operations.count }} </td>
+      <!-- LastPost -->
+      <td class="align-middle">
+        {% with post=obj.get_last_post %}
+        {% if post %}
+        <small>
+          <a href="{% url 'licenses:publication_posts' obj.pk post.topic.pk %}">
+            By {{ post.created_by.username }} {{ post.created_at|naturaltime }}
+          </a>
+        </small>
+        {% else %}
+        <small class="text-muted">
+          <em>No posts yet.</em>
+        </small>
+        {% endif %}
+        {% endwith %}
+      </td>
+      <td class="text-center">
+        <a class="btn btn-info" href="{% url 'licenses:publication_list' obj.pk %}" role="button">発行履歴</a>
+      </td>
+      <td class="text-center">
+        <a class="btn btn-success" href="{% url 'licenses:operation_list' obj.pk %}" role="button">使用履歴</a>
+      </td>
+      <td class="text-center">
+        <a class="btn btn-danger" href="{% url 'licenses:publication_list' obj.pk %}" role="button">削除</a>
+      </td>
+
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

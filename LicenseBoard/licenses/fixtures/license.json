@@ -1,0 +1,91 @@
+[
+    {
+        "model": "licenses.M_Language",
+        "pk": 1,
+        "fields": {
+            "language_name": "日本語"
+        }
+    },
+    {
+        "model": "licenses.M_Language",
+        "pk": 2,
+        "fields": {
+            "language_name": "英語"
+        }
+    },
+    {
+        "model": "licenses.M_Company",
+        "pk": 1,
+        "fields": {
+            "company_name": "PPPPP",
+            "base_name": "品川"
+        }
+    },
+    {
+        "model": "licenses.M_Company",
+        "pk": 2,
+        "fields": {
+            "company_name": "PPPPP",
+            "base_name": "大阪"
+        }
+    },
+    {
+        "model": "licenses.M_Application",
+        "pk": 1,
+        "fields": {
+            "application_name": "RAT"
+        }
+    },
+    {
+        "model": "licenses.M_Application",
+        "pk": 2,
+        "fields": {
+            "application_name": "SAM"
+        }
+    },
+    {
+        "model": "licenses.M_Application",
+        "pk": 3,
+        "fields": {
+            "application_name": "SAT"
+        }
+    },
+    {
+        "model": "licenses.M_Message",
+        "pk": 1,
+        "fields": {
+            "message": "メッセージ",
+            "title": "タイトル",
+            "header": "ヘッダー",
+            "footer": "フッター"
+        }
+    },
+    {
+        "model": "licenses.M_RequestCategory",
+        "pk": 1,
+        "fields": {
+            "requestcategory_name": "新規"
+        }
+    },
+    {
+        "model": "licenses.M_RequestCategory",
+        "pk": 2,
+        "fields": {
+            "requestcategory_name": "継続"
+        }
+    },
+    {
+        "model": "licenses.T_License",
+        "pk": 1,
+        "fields": {
+            "display_name": "Sample001",
+            "hid": "HID001",
+            "memo": "サンプルです",
+            "created_at": "2019-11-01T10:00:00.000",
+            "updated_at": "2019-11-01T10:00:00.000",
+            "company": "1",
+            "language": "1",
+            "application": "1"
+        }
+    }
+]

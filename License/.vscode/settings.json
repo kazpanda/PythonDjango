@@ -1,0 +1,7 @@
+{
+    "git.ignoreLimitWarning": true,
+    "python.pythonPath": "ENV_W\\Scripts\\python.exe",
+    "python.venvFolders": [
+        "${workspaceFolder}\\ENV_W"
+    ]
+}

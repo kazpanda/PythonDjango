@@ -1,0 +1,97 @@
+@startuml
+
+!define MAIN_ENTITY #E2EFDA
+!define MAIN_ENTITY_2 #FCE4D6
+
+!define METAL #F2F2F2
+!define MASTER_MARK_COLOR AAFFAA
+!define TRANSACTION_MARK_COLOR FFAA00
+
+skinparam class {
+    BackgroundColor White
+    BorderColor Black
+    ArrowColor Black
+}
+
+package "ライセンス管理システム" as target_system {
+    entity "ライセンス管理テーブル" as License <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
+        + ライセンス管理ID [PK]
+        --
+        # ユーザーID [FK]
+        登録者
+        使用者
+        責任者
+    }
+
+    entity "ライセンス明細テーブル" as LicenseDetail <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
+        + 注文ID   [PK]
+        + 明細番号 [PK]
+        --
+        # ソフトID [FK]
+        ソフト名
+        更新日時
+        開始日
+        終了日
+        作成者
+        販売金額
+        付与ポイント
+        残ポイント
+    }
+
+    entity "ソフトマスタ" as Softwear <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        + ソフトID [PK]
+        --
+        ソフト名
+    }
+
+    entity "ユーザーマスタ" as User <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        + ユーザーID [PK]
+        --
+        # 会社ID [FK]
+        担当者名
+        拠点名
+        メールアドレス
+        役職
+        言語
+    }
+
+    entity "会社マスタ" as Company <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        + 会社ID [PK]
+        --
+        会社名
+    }
+
+    entity "言語マスタ" as Language <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        + 言語ID [PK]
+        --
+        言語名
+    }
+
+    entity "メッセージマスタ" as Message <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+        + メッセージID [PK]
+        --
+        本文
+        ヘッダー
+        フッター
+    }
+
+    entity "メッセージ履歴" as MessageHistory <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
+        + メッセージ履歴ID [PK]
+        --
+        # メッセージID[FK]
+
+    }
+
+}
+
+License        ||--|{     LicenseDetail
+LicenseDetail   }--||        Softwear
+License         }--||     User
+License         }--||     MessageHistory
+License         }--||    Company
+License         }--||        Language
+MessageHistory  }--||        Message
+
+'note bottom of customer : 別プロジェクト\nDB-Linkで参照する
+
+@enduml

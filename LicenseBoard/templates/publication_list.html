@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block title %}
+{{ html_obj.display_name }} - {{ block.super }}
+{% endblock %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'licenses:home' %}">Licenses</a></li>
+<li class="breadcrumb-item active">{{ html_obj.display_name }}</li>
+{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+  <a href="{% url 'licenses:publication_new' html_obj.pk %}" class="btn btn-primary">New publication</a>
+</div>
+
+<table class="table table-striped mb-4">
+  <thead class="thead-inverse">
+    <tr>
+      <th>No</th>
+      <!--
+      <th>Replies</th>
+      <th>Views</th>
+      <th>Last Update</th>
+      -->
+      <th>Macアドレス</th>
+      <th>販売価格</th>
+      <th>付与ポイント</th>
+      <th>残数ポイント</th>
+      <th>更新期限通知</th>
+      <th>更新申請受理</th>
+      <th>Key情報収集案内</th>
+      <th>更新Key発行連絡</th>
+      <th>廃止回収日</th>
+      <th>メモ</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for obj in publication %}
+    {% url 'licenses:publication_posts' html_obj.pk obj.pk as publication_url %}
+    <tr>
+      <td>
+        <p class="mb-0">
+          <a href="{{ publication_url }}">{{ obj.increment_num }}</a>
+        </p>
+
+        <!--
+        <small class="text-muted">
+          Pages:
+          {#% for i in topic.get_page_range %}
+          <a href="{#{ publication_url }}?page={#{ i #}}">{#{ i }}</a>
+          {#% endfor %}
+          {#% if topic.has_many_pages %}
+          ... <a href="{#{ publication_url }}?page={#{ topic.get_page_count }}">Last Page</a>
+          {#% endif %}
+        </small>
+      </td>
+
+
+      <td class="align-middle">{#{ topic.replies }}</td>
+      <td class="align-middle">{#{ topic.views }}</td>
+      <td class="align-middle">{#{ topic.last_updated|naturaltime }}</td>
+    -->
+      <td class="align-middle">{{ obj.mac_address }}</td>
+      <td class="align-middle">{{ obj.price }}</td>
+      <td class="align-middle">{{ obj.grant_points }}</td>
+      <td class="align-middle">{{ obj.remaining_point }}</td>
+      <td class="align-middle">{{ obj.renewal_deadline_notification }}</td>
+      <td class="align-middle">{{ obj.renewal_application_accepted }}</td>
+      <td class="align-middle">{{ obj.renewal_application_send }}</td>
+      <td class="align-middle">{{ obj.renewal_key_publish_notification }}</td>
+      <td class="align-middle">{{ obj.discontinued_product_collection }}</td>
+      <td class="align-middle">{{ obj.memo }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% include 'includes/pagination.html' %}
+
+{% endblock %}

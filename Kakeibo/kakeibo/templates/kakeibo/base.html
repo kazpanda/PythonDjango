@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+ <meta charset="utf-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ {# Bootstrap4を使う #}
+ <!-- linkタグでbootstrapのcssファイルを読み込む -->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+ <!-- linkタグでDataTableのcssファイルを読み込む -->
+ <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/>
+ <!-- タイトルの設定-->
+ <title>Tutorial</title>
+<body>
+ {% block content %}
+  <!-- block content ～ endblockの間に子テンプレートの内容が差し込まれる -->
+ {% endblock %}
+ <!-- bootstrapのjavascrit読み込み-->
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+ <!-- DataTablesのjavascrit読み込み-->
+ <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+
+ <script>
+    jQuery(function($){
+      // デフォルトの設定を変更
+      $.extend( $.fn.dataTable.defaults, {
+          language: {
+              url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
+              }
+              });
+      $("#kakeibo_list").DataTable({
+          "searching": true,     //検索機能
+          "paging":   true,      //ページング機能
+          "ordering": true,      //ソート機能
+          "lengthChange": true,  //件数切り替え機能
+
+          }).columns.adjust().draw();
+          });
+ </script>
+  <!-- Databableの定義-->
+  <script>
+    jQuery(function($){
+      // デフォルトの設定を変更
+      $.extend( $.fn.dataTable.defaults, {
+          language: {
+              url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
+              }
+              });
+      $("#kakeibo_list").DataTable({
+          "searching": true,     //検索機能
+          "paging":   true,      //ページング機能
+          "ordering": true,      //ソート機能
+          "lengthChange": true,  //件数切り替え機能
+
+          }).columns.adjust().draw();
+          });
+ </script>
+</body>
+</html>

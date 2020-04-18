@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Start a New Topic{% endblock %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/simplemde.min.css' %}">
+{% endblock %}
+
+<!-- パンくずリスト -->
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'licenses:home' %}">Licenses</a></li>
+<li class="breadcrumb-item"><a href="{% url 'licenses:operation_list' html_obj.pk %}">{{ html_obj.created_at }}</a></li>
+<li class="breadcrumb-item active">New operation</li>
+{% endblock %}
+
+{% block content %}
+<form method="post" class="mb-4" novalidate>
+  {% csrf_token %}
+  {% include 'includes/form.html' %}
+  <button type="submit" class="btn btn-success">Post</button>
+</form>
+{% endblock %}

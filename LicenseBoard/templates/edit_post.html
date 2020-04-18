@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Edit post{% endblock %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/simplemde.min.css' %}">
+{% endblock %}
+
+<!-- パンくずリスト -->
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'licenses:home' %}">Licenses</a></li>
+<li class="breadcrumb-item"><a
+                href="{% url 'licenses:publication_list' post.topic.license.pk %}">{{ post.topic.license.display_name }}</a>
+</li>
+<li class="breadcrumb-item"><a
+                href="{% url 'licenses:publication_posts' post.topic.license.pk post.topic.pk %}">{{ post.topic.increment_num }}</a>
+</li>
+
+
+<li class="breadcrumb-item active">Edit post</li>
+{% endblock %}
+
+{% block content %}
+<form method="post" class="mb-4" novalidate>
+        {% csrf_token %}
+        {% include 'includes/form.html' %}
+        <button type="submit" class="btn btn-success">Save changes</button>
+        <a href="{% url 'licenses:publication_posts' post.topic.license.pk post.topic.pk %}"
+                class="btn btn-outline-secondary" role="button">Cancel</a>
+</form>
+{% endblock %}

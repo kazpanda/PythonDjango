@@ -1,0 +1,61 @@
+<!-- 親テンプレートを読み込む-->
+{% extends 'License/base.html' %}
+{% block content %}
+ <div class="content-wrapper">
+   <div class="container-fluid">
+     <!-- パンくずリストの設定-->
+     <ol class="breadcrumb">
+       <li class="breadcrumb-object">
+         <a href="{% url 'admin:index' %}">管理画面</a>
+        </li>
+       <li class="breadcrumb-object">
+         <a href="{% url 'License:list' %}">TOP</a>
+       </li>
+       <li class="breadcrumb-object active">詳細表示</li>
+     </ol>
+     <!--ページタイトル-->
+     <div class="card mb-3">
+       <div class="card-header">
+         <h3><b>ライセンス管理</b></h3></div>
+       <div class="card-body">
+         <!-- テーブル表の定義 -->
+         <div class="table-responsive">
+         <table width="100%" class="table table-striped table-bordered table-hover">
+           　<!-- 表の列の定義-->
+             <thead>
+               <tr>
+                 <th class="text-center">起動回数</th>
+                 <th class="text-center">週報発行回数</th>
+                 <th class="text-center">月報発行回数</th>
+                 <th class="text-center">メモ</th>
+                 <th class="text-center">更新・削除</th>
+
+                </tr>
+             </thead>
+           　<!-- ここまでが表の列の定義-->
+           　<!-- 表のデータ部分の表示-->
+           <tbody>
+              {% for object in object_list %}
+             <tr class="odd gradeX text-center">
+                <td class="text-center" >{{ object.starting_count }}</td>
+                <td class="text-center" >{{ object.weekly_report_count }}</td>
+                <td class="text-center" >{{ object.monthly_report_count }}</td>
+                <td class="text-center" >{{ object.memo }}</td>
+                <td class="text-center" >
+                    <a class="btn btn-primary" href="{% url 'License:operation_history_update' object.pk %}" role="button">更新</a>
+                    <a class="btn btn-primary" href="{#% url 'License:operation_history_create' object.pk %#}" role="button">追加</a>
+                    <a class="btn btn-danger" href="{#% url 'License:delete' object.pk %#}" role="button">削除</a>
+                </td>
+             </tr>
+              {% endfor %}
+            </tbody>
+        　<!-- ここまでが表のデータ部分の表示-->
+           </table>
+           <!-- ここまでがテーブル表の定義 -->
+           <a class="btn btn-primary" href="{% url 'License:list' %}" role="button">全リストに戻る</a>
+       </div>
+      </div>
+      </div>
+   </div>
+  </div>
+{% endblock content %}

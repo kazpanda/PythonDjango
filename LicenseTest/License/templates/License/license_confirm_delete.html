@@ -1,0 +1,28 @@
+{% extends 'License/base.html' %}
+{% block content %}
+ <div class="content-wrapper">
+   <div class="container-fluid">
+     <!-- Breadcrumbs-->
+     <ol class="breadcrumb">
+       <li class="breadcrumb-item">
+         <a href="{% url 'License:list' %}">TOP</a>
+       </li>
+       <li class="breadcrumb-item active">ライセンス管理</li>
+     </ol>
+     <!-- Example DataTables Card-->
+     <div class="card mb-3">
+       <div class="card-header">
+         <h3>データ削除</h3></div>
+       </div>
+       <div class="content-wrapper">
+         <div class="container-fluid">
+           <p>{{ object }} のデータを削除していいですか?</p>
+           <form method="post">
+             <button class="btn btn-danger">削除する</button>
+             {% csrf_token %}
+           </form>
+         </div>
+       </div>
+   </div>
+ </div>
+{% endblock %}
