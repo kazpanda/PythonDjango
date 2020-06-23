@@ -1,0 +1,16 @@
+[run]
+branch = True
+
+[report]
+#show_missing = True
+omit =
+    setup.py
+    manage.py
+    kiwi_lint/*.py
+    tcms/tests/*
+    tcms/settings/test/*
+    tcms/utils/tests/*
+    */tests/__init__.py
+    */tests.py
+    */tests/test_*.py
+    */migrations/*.py

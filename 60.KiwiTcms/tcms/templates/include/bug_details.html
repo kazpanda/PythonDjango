@@ -1,0 +1,17 @@
+{% load i18n %}
+
+{% trans 'Status' %}: {% if object.status %}{% trans 'Open' %}{% else %}{% trans 'Closed' %}{% endif %}
+
+{% trans 'Created at' %}: {{ object.created_at }}
+
+{% trans 'Reporter' %}: {{ object.reporter.username }}
+
+{% if object.assignee %}
+    {% trans 'Assignee' %}: {{ object.assignee.username }}
+{% endif %}
+
+{% trans 'Product' %}: {{ object.product }}
+
+{% trans 'Version' %}: {{ object.version }}
+
+{% trans 'Build' %}: {{ object.build }}

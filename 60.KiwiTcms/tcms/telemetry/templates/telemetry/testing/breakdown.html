@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Testing Breakdown" %}{% endblock %}
+
+{% block contents %}
+
+    <div class="container-fluid container-cards-pf">
+        {% include "telemetry/include/filters.html" %}
+
+        <div class="col-md-3" style="text-align: center">
+            <div id="total-count"></div>
+            <label> {% trans "Total" %} </label>
+
+            <div class="progress automated-manual-bar">
+                <div class="progress-bar automated-bar" role="progressbar"></div>
+                <div class="progress-bar progress-bar-warning manual-bar" role="progressbar"></div>
+            </div>
+
+            <div class="bar-legend">
+                <div style="align-items: center; display: flex;">
+                    <div class="progress-bar"></div>
+                    <div class="automated-legend-text">{% trans "Automated" %}</div>
+                </div>
+                <div style="align-items: center; display: flex;">
+                    <div class="progress-bar-warning"></div>
+                    <div class="manual-legend-text">{% trans "Manual" %}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4" style="text-align: center">
+            <div style="text-align: center; font-weight: bold">{% trans "Priorities" %}</div>
+            <div id="priorities-chart"></div>
+        </div>
+
+        <div class="col-md-4" style="text-align: center">
+            <div style="text-align: center; font-weight: bold">{% trans "Categories" %}</div>
+            <div id="categories-chart"></div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'telemetry/css/testing/breakdown.css' %}" />
+
+    <script src="{% static 'c3/c3.min.js' %}"></script>
+    <script src="{% static 'd3/d3.min.js' %}"></script>
+
+    <script src="{% static 'js/utils.js' %}"></script>
+    <script src="{% static 'js/jsonrpc.js' %}"></script>
+
+    <script src="{% static 'telemetry/js/testing/utils.js' %}"></script>
+    <script src="{% static 'telemetry/js/testing/breakdown.js' %}"></script>
+
+{% endblock %}

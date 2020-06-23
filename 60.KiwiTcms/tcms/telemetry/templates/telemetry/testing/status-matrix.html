@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Testing Status Matrix" %}{% endblock %}
+
+{% block contents %}
+    <div class="container-fluid container-cards-pf">
+        {% include "telemetry/include/filters.html" %}
+
+        <table class="table table-bordered table-with-horizontal-scroll" id="table">
+            <thead>
+            <tr>
+                <th class="header"> {% trans "Test case"%} \ {% trans "Test run" %}</th>
+            </tr>
+            </thead>
+        </table>
+
+    </div>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'telemetry/css/testing/status-matrix.css' %}"/>
+
+    <script src="{% static 'js/utils.js' %}"></script>
+    <script src="{% static 'js/jsonrpc.js' %}"></script>
+
+    <script src="{% static 'telemetry/js/testing/utils.js' %}"></script>
+    <script src="{% static 'telemetry/js/testing/status-matrix.js' %}"></script>
+{% endblock %}
