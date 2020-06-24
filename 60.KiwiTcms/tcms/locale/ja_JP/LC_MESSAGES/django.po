@@ -143,7 +143,7 @@ msgstr "バージョン"
 #: tcms/testruns/templates/testruns/search.html:44
 #: tcms/testruns/templates/testruns/search.html:98
 msgid "Build"
-msgstr "ビルド"
+msgstr "テスト実行ビルド名"
 
 #: tcms/bugs/templates/bugs/get.html:97
 msgid "commented on"
@@ -374,7 +374,7 @@ msgstr "パフォーマンス"
 
 #: tcms/core/tests/test_views.py:42 tcms/settings/common.py:325
 msgid "ADMIN"
-msgstr "管理者"
+msgstr "設定管理"
 
 #: tcms/core/tests/test_views.py:65 tcms/templates/dashboard.html:8
 msgid "Test executions"
@@ -759,7 +759,7 @@ msgstr "不具合は見つかりませんでした"
 #: tcms/testcases/templates/testcases/mutable.html:138
 #: tcms/testruns/templates/testruns/mutable.html:64
 msgid "Notes"
-msgstr "注釈"
+msgstr "コメント"
 
 #: tcms/templates/case/get_details.html:62
 #: tcms/templates/run/get_case_runs.html:185 tcms/templates/run/report.html:94
@@ -850,7 +850,7 @@ msgstr "テストプラン"
 #: tcms/testplans/templates/testplans/search.html:62
 #: tcms/testplans/templates/testplans/search.html:116
 msgid "Type"
-msgstr "タイプ"
+msgstr "テストの種類"
 
 #: tcms/templates/dashboard.html:49 tcms/templates/include/tc_executions.html:7
 msgid "Executions"
@@ -935,7 +935,7 @@ msgstr ""
 "要約：%(summary)s\n"
 "\n"
 "管理：%(manager)s。\n"
-"デフォルトのテスター：%(default_tester)s。\n"
+"テスト担当者：%(default_tester)s。\n"
 "\n"
 "開発プロダクト：%(product)s\n"
 "開発プロダクトバージョン：%(version)s\n"
@@ -977,7 +977,7 @@ msgstr "レコードはありません。"
 #: tcms/testcases/templates/testcases/search.html:141
 #: tcms/testruns/templates/testruns/mutable.html:97
 msgid "Status"
-msgstr "状態"
+msgstr "ステータス"
 
 #: tcms/templates/include/tags_card.html:6 tcms/templates/plan/get.html:119
 #: tcms/templates/plan/get_cases.html:76 tcms/templates/run/get.html:73
@@ -1151,7 +1151,7 @@ msgstr "作成者"
 
 #: tcms/templates/plan/get.html:64
 msgid "Plan Type"
-msgstr "プランタイプ"
+msgstr "テストプランタイプ"
 
 #: tcms/templates/plan/get.html:70
 msgid "Reference Link"
@@ -1337,7 +1337,7 @@ msgstr "レビュア"
 #: tcms/templates/plan/search_case.html:79 tcms/templates/run/get.html:116
 #: tcms/templates/run/report.html:41
 msgid "Default Tester"
-msgstr "デフォルトのテスター"
+msgstr "テスタ担当者"
 
 #: tcms/templates/plan/get_cases.html:205
 msgid "Text version"
@@ -1528,7 +1528,7 @@ msgstr "開発プロダクトのバージョン"
 
 #: tcms/templates/run/get.html:97 tcms/templates/run/report.html:51
 msgid "Note"
-msgstr "注釈"
+msgstr "コメント"
 
 #: tcms/templates/run/get.html:129
 msgid "Finished"
@@ -1593,7 +1593,7 @@ msgstr "ハイパーリンク"
 #: tcms/testruns/templates/testruns/search.html:61
 #: tcms/testruns/templates/testruns/search.html:100
 msgid "Default tester"
-msgstr "デフォルトのテスター"
+msgstr "テスト担当者"
 
 #: tcms/templates/run/get_case_runs.html:84
 msgid "Auto"
@@ -1726,7 +1726,7 @@ msgstr ""
 "2. \n"
 "3. \n"
 "\n"
-"### トリガー: \n"
+"### 手順: \n"
 "1. \n"
 "2. \n"
 "3. \n"
@@ -1812,7 +1812,7 @@ msgstr "担当者"
 
 #: tcms/testcases/templates/testcases/mutable.html:182
 msgid "Default tester of runs"
-msgstr "実行デフォルトテスター"
+msgstr "テスト実行担当者"
 
 #: tcms/testcases/templates/testcases/mutable.html:191
 msgid "Notify when"
