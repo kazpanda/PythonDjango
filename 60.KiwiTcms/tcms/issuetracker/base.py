@@ -113,14 +113,13 @@ class IssueTrackerType:
         """
         txt = execution.case.get_text_with_version(execution.case_text_version)
 
-        comment = "Filed from execution %s\n\n" % execution.get_full_url()
-        comment += "**Product:**\n%s\n\n" % execution.run.plan.product.name
-        comment += "**Component(s):**\n%s\n\n" % \
-                   self.get_case_components(execution.case)
-        comment += "**Version-Release number** (if applicable):\n"
-        comment += "%s\n\n" % execution.build.name
-        comment += "**Steps to reproduce**: \n%s\n\n" % txt
-        comment += "**Actual results**: \n<describe what happened>\n\n"
+        comment = "### チケット:\n * %s \n\n" % execution.get_full_url()
+        comment += "### プロジェクト名:\n * %s \n\n" % execution.run.plan.product.name
+        comment += "### コメント:\n * %s \n\n"%\
+        self.get_case_components(execution.case)
+        comment += "### バージョン:\n * %s \n\n" % execution.build.name
+        comment += "### 説明: \n%s\n\n" % txt
+        comment += "### 結果: \n * <describe what happened> \n\n"
 
         return comment
 
